@@ -26,6 +26,14 @@ class SerializeTestCase(unittest.TestCase):
             "ExpressionAttributeValues": {":val1": "bar", ":val2": 5, ":val3": 2},
         }
 
+    def test_serialize_dict_updates(self):
+        response = serialize({"foo": "bar", "biz": 5})
+        assert response == {
+            "UpdateExpression": "SET #ref1 = :val1, #ref2 = :val2 ",
+            "ExpressionAttributeNames": {"#ref1": "foo", "#ref2": "biz"},
+            "ExpressionAttributeValues": {":val1": "bar", ":val2": 5},
+        }
+
 
 class SetTestCase(unittest.TestCase):
     def test_serialize(self):

@@ -388,6 +388,14 @@ class UpdateMixinTestCase(unittest.TestCase):
         item = self.table.get(("Partition1", "Sort1"))
         assert item["status"] == "in_progress"
 
+    def test_update_set_dict(self):
+        updates = {"status": "in_progress", "foo": "bar"}
+        attributes = self.table.update(("Partition1", "Sort1"), updates)
+        assert attributes == {}
+        item = self.table.get(("Partition1", "Sort1"))
+        assert item["status"] == "in_progress"
+        assert item["foo"] == "bar"
+
     def test_update_set_if_not_exists(self):
         self.table.update(
             ("Partition1", "Sort1"),

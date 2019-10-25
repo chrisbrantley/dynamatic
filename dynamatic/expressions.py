@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Any, Union, List
+from typing import Any, Union, List, Dict
 import collections
 
 
@@ -13,7 +13,9 @@ def val(token: Any) -> str:
     return f":val{token}"
 
 
-def serialize(updates: Union[UpdateExpression, List[UpdateExpression]]) -> dict:
+def serialize(
+    updates: Union[Dict[str, Any], UpdateExpression, List[UpdateExpression]]
+) -> dict:
     """
     Takes a list of UpdateExpressions (or just a single UpdateExpression) and
     compiles it into a single dict containing the necessary keys to send to 
@@ -22,6 +24,9 @@ def serialize(updates: Union[UpdateExpression, List[UpdateExpression]]) -> dict:
     # If a single expression is passed we wrap it in a list
     if isinstance(updates, UpdateExpression):
         updates = [updates]
+
+    if isinstance(updates, collections.abc.Mapping):
+        updates = [Set(k, v) for k, v in updates.items()]
 
     expressions = collections.defaultdict(list)
     response = {
