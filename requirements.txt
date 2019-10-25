@@ -1,2 +1,5 @@
 boto3>=1.9
 pytest-cov==2.8.1
+setuptools
+wheel
+twine
