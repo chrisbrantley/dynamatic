@@ -32,7 +32,7 @@ from dynamatic.expressions import (
 
 dynamodb = boto3.resource(
     "dynamodb",
-    endpoint_url="http://localhost:8080",
+    endpoint_url="http://localhost:8181",
     aws_access_key_id="AccessKey",
     aws_secret_access_key="VerySecretKey",
     region_name="us-west-2",

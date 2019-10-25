@@ -48,7 +48,7 @@ class CreateMixin:
             "AttributeDefinitions": [
                 key.export()
                 for key in sorted(
-                    self.get_all_keys(), key=lambda x: x.name
+                    self.get_all_keys(), key=lambda x: getattr(x, "name", "")
                 )  # sorting the keys gives predictable output
                 if key is not None
             ],
