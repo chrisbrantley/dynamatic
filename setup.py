@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="dynamatic",
-    version="1.0.0-beta.2",
+    version="1.0.0-beta.3",
     author="Chris Brantley",
     description="A DynamoDB library based on boto3",
     long_description=long_description,
