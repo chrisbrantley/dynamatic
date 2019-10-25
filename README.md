@@ -6,9 +6,9 @@ Dynamatic is a python library for working with DynamoDB. It is NOT an ORM. It si
 
 First, I was inspired by [this blog post](https://www.trek10.com/blog/dynamodb-single-table-relational-modeling/) which was inspired by [this excellent re:Invent 2018 session by Rick Houlihan](https://youtu.be/HaEPXoXVf2k) about how to properly model data in DynamoDB for efficiency and scale.
 
-Second, I did not want an ORM. ORMs like PynamoDB package their own methods of defining object schemas but there are already excellent libraries out there like [Pydantic](https://github.com/samuelcolvin/pydantic) or [Marshmallow](https://github.com/marshmallow-code/marshmallow). They also tend to impose traditional relational database techniques (like Active Record) that do not scale well.
+Second, I did not want an ORM. ORMs like PynamoDB package their own methods of defining object schemas but there are already excellent libraries out there like [Pydantic](https://github.com/samuelcolvin/pydantic) or [Marshmallow](https://github.com/marshmallow-code/marshmallow). They also tend to impose traditional relational database patterns (like Active Record) that do not scale well.
 
-Third, Boto3 is a great library. But it's DynamoDB API is painfully low-level and not particularly "Pythonic". Working with advanced features like [Update Expressions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.UpdateExpressions.html) and [Projection Expressions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ProjectionExpressions.html) is complex and unintutive.
+Third, boto3 is a great library but its DynamoDB API is painfully low-level and not particularly "Pythonic". Working with advanced features like [Update Expressions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.UpdateExpressions.html) and [Projection Expressions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ProjectionExpressions.html) is complex and unintutive.
 
 So this library aims to be a happy medium: Providing enough abstraction and "developer ergonomics" to get up and running with DynamoDB quickly, while not getting in the way with high-level ORM features.
 
