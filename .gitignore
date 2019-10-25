@@ -1,3 +1,6 @@
 __pycache__
 /.vscode
 /.coverage
+/build
+/dist
+/dynamatic.egg-info
