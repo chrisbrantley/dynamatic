@@ -88,9 +88,12 @@ class CreateMixin:
 
 class GetMixin:
     def get(
-        self, key: Union[Any, Sequence[Any, Any]], attributes: Sequence[str] = None
+        self,
+        key: Union[Any, Sequence[Any, Any]],
+        attributes: Sequence[str] = None,
+        consistent_read: bool = False,
     ) -> dict:
-        request = {"Key": self.convert_key(key)}
+        request = {"Key": self.convert_key(key), "ConsistentRead": consistent_read}
         if attributes:
             request.update(self.serialize_attributes(attributes))
         try:
