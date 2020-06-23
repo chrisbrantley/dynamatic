@@ -180,7 +180,9 @@ class PutMixin:
         condition: ConditionBase = None,
         return_values: RETURN_VALUES = RETURN_VALUES.NONE,
     ) -> dict:
-        request = {"Item": item}
+        filtered_item = {k: v for k, v in item.items() if v is not None}
+
+        request = {"Item": filtered_item}
         if condition:
             request["ConditionExpression"] = condition
         if return_values:

@@ -320,6 +320,13 @@ class PutMixinTestCase(unittest.TestCase):
         assert values["status"] == "active"
         assert values["sequence"] == 1
 
+    def test_put_with_none_values(self):
+        values = self.table.put(
+            {"pk": "Partition1", "sk": "Sort1", "status": None, "sequence": 1},
+            return_values=MyTable.RETURN_VALUES.ALL_NEW
+        )
+        assert 'status' not in  values
+
 
 class DeleteMixinTestCase(unittest.TestCase):
     def setUp(self):
@@ -486,7 +493,7 @@ class UpdateMixinTestCase(unittest.TestCase):
             Set("status", "in_progress"),
             condition=Attr("status").eq("active")
         )
-        
+
         with self.assertRaises(ConditionalCheckFailedException):
             self.table.update(
                 ("Partition1", "Sort1"),
